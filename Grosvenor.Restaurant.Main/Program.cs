@@ -10,7 +10,7 @@ namespace Grosvenor.Restaurant.Main
         static void Main(string[] args)
         {
             _waiterService = new WaiterService();
-            RequestClientOrder();
+            RequestClientOrder(); 
         }
          
         public static void RequestClientOrder()

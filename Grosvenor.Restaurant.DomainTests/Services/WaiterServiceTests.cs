@@ -29,5 +29,30 @@ namespace Grosvenor.Restaurant.DomainTests.Services
                 new WaiterService().ProcessClientOrder("morning, 1, 2, 3, 4"),
                 "Eggs, Toast, Coffee, error");
         }
+
+        [TestMethod()]
+        public void WhenIAskForThreeCoffees()
+        {
+            Assert.AreEqual(
+                new WaiterService().ProcessClientOrder("morning, 1, 2, 3, 3, 3"),
+                "Eggs, Toast, Coffee(x3)");
+        }
+
+        [TestMethod()]
+        public void WhenIAskForAllDishesAtNight()
+        {
+            Assert.AreEqual(
+                new WaiterService().ProcessClientOrder("night, 1, 2, 3, 4"),
+                "Steak, Potato, Wine, Cake");
+        }
+
+        [TestMethod()]
+        public void WhenIAskForTwoPotato()
+        {
+            Assert.AreEqual(
+                new WaiterService().ProcessClientOrder("night, 1, 2, 2, 4"),
+                "Steak, Potato(x2), Cake");
+        }
+
     }
 }
