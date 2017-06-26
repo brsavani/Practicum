@@ -5,6 +5,27 @@ $projectFileAbsPath = $PSScriptRoot+"\..\..\Grosvenor.Restaurant.sln"
 
 & $msbuild $projectFileAbsPath
 
+if ($LastExitCode -eq 0)
+{
+    write-host "build success" -foregroundcolor Green
+}
+else
+{
+    write-host "Error on build application" -foregroundcolor Red
+    Return
+}
+
+
 $testsFile = $PSScriptRoot+"\..\..\Grosvenor.Restaurant.DomainTests\bin\Debug\Grosvenor.Restaurant.DomainTests.dll"
 
-& $mstest /testcontainer:$testsFile
+& $mstest /testcontainer:$testsFile 
+
+if ($LastExitCode -eq 0)
+{
+    write-host "test success" -foregroundcolor Green
+}
+else
+{
+    write-host "Error on test application" -foregroundcolor Red
+    Return
+}
